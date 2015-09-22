@@ -1,41 +1,80 @@
-InboxSDK.load('1.0', 'sdk_mlazzje-dlgmail_43a7d41655').then(function(sdk){
+Promise.all([
+  InboxSDK.load('1.0', 'sdk_mlazzje-dlgmail_43a7d41655')
+])
+.then(function(results){
+  var sdk = results[0];
 
-  var register_handler, message_view_handler, add_custom_attachment_card;
-
-  // the SDK has been loaded, now do something with it!
-  /*sdk.Compose.registerComposeViewHandler(function(composeView){
-
-    // a compose view has come into existence, do something with it!
-    composeView.addButton({
-      title: "My Nifty Button!",
-      iconUrl: 'https://www.google.fr/imgres?imgurl=http%3A%2F%2Ffiles.softicons.com%2Fdownload%2Fgame-icons%2Fsuper-mario-icons-by-sandro-pereira%2Fico%2FMushroom%252520-%2525201UP.ico&imgrefurl=http%3A%2F%2Fwww.softicons.com%2Fgame-icons%2Fsuper-mario-icons-by-sandro-pereira&h=256&w=256&tbnid=CqD3Tq2CC7Ra2M%3A&docid=Adso2vBTvjVmZM&ei=BlQAVoWnI4b6atGAt6AN&tbm=isch&client=ubuntu&iact=rc&uact=3&dur=515&page=1&start=0&ndsp=38&ved=0CDkQrQMwAWoVChMIhcKFkeiIyAIVBr0aCh1RwA3U',
-      onClick: function(event) {
-        event.composeView.insertTextIntoBodyAtCursor('Hello World!');
-      },
-    });
-
-  });*/
-  register_handler = function() {
-    sdk.Conversations.registerMessageViewHandler(message_view_handler);
+  var registerHandler = function() {
+    sdk.Conversations.registerMessageViewHandler(messageViewHandler);
   };
 
-  message_view_handler = function(message_view) {
-      console.log('lol');
-      add_custom_attachment_card(message_view);
-
+  var messageViewHandler = function(messageView) {
+    if(messageView.isLoaded()) {
+      console.log(messageView);
+      // Add CustomAttachmentsToolbarButton to the given message view.
+      addCustomAttachmentsToolbarButton(messageView);
+    }
   };
 
-  add_custom_attachment_card = function(message_view) {
-    var params;
-    params = {
-      title: "Download all",
-      fileIconImageUrl: chrome.runtime.getURL('img/save.png'),
-      foldColor: "#ffffff",
-      description: "Download all without archive it!"
+  var addCustomAttachmentsToolbarButton = function(messageView) {
+    var options = {
+      tooltip: 'Download all',
+      iconUrl: './img/save.png' ,
+      onClick: handleAttachmentsButtonClick
     };
-  message_view.addAttachmentCardViewNoPreview(params);
-};
 
-  register_handler();
+    messageView.addAttachmentsToolbarButton(options);
+  };
 
+  var handleAttachmentsButtonClick = function(event) {
+    if(!event) {
+      return;
+    }
+
+    // Iterate over attachmentCardViews array to get URL's.
+    event.forEach(function(attachmentCardView, index) {
+      var currentElement = attachmentCardView.getElement();
+      
+      if(typeof currentElement !== 'undefined') {
+        var downloadUrl = currentElement.getAttribute('download_url');
+        //get(stripUrl(downloadUrl));
+        window.open(downloadUrl, '_self');
+      }
+    });
+  }
+
+  // Run.
+  registerHandler();
 });
+
+/**
+ * Promisify a Ajax HTTP call.
+ * @param  {string} url     the url to call
+ * @param  {Objet} params   options
+ * @param  {Object} headers
+ * @return {Promise}        a resolved promise
+ */
+function get(url, params, headers) {
+  return Promise.resolve(
+    $.ajax({
+      url: url,
+      type: 'GET',
+      crossDomain: true,
+      dataType: 'jsonp',
+      data: params,
+      headers: headers
+    })
+  );
+}
+
+/**
+ * Parse a string containing a url
+ * @param  {string} url Surrounded url
+ * @return {string} the url extracted from the given string
+ */
+function stripUrl(url) {
+  var re = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/;
+
+  // Return the full url
+  return re.exec(url)[0];
+}
