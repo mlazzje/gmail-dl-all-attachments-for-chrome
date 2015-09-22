@@ -9,9 +9,7 @@ Promise.all([
   };
 
   var messageViewHandler = function(messageView) {
-    if(messageView.isLoaded()) {
-      console.log(messageView);
-      
+    if(messageView.isLoaded()) { 
       // Add CustomAttachmentsToolbarButton to the given message view.
       addCustomAttachmentsToolbarButton(messageView);
     }
@@ -76,7 +74,7 @@ function get(url, params, headers) {
 }
 
 /**
- * Run multiples files download
+ * Run multiple files download
  * @param  {Array} urls     Array of urls (pointing to files)
  * @param  {Integer} duration time between each HTTP call
  */
