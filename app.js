@@ -31,16 +31,27 @@ Promise.all([
       return;
     }
 
+    var downloadUrls = [];
+
     // Iterate over attachmentCardViews array to get URL's.
     event.forEach(function(attachmentCardView, index) {
       var currentElement = attachmentCardView.getElement();
-      
+
       if(typeof currentElement !== 'undefined') {
         var downloadUrl = currentElement.getAttribute('download_url');
-        //get(stripUrl(downloadUrl));
-        window.open(downloadUrl, '_self');
+
+        if(downloadUrl) {
+          var striped = stripUrl(downloadUrl);
+          
+          if(striped) {
+            downloadUrls.push(downloadUrl);
+          }
+        }
       }
     });
+
+    // Download
+    processMultipleFilesDownload(downloadUrls, 1000);
   }
 
   // Run.
@@ -49,10 +60,10 @@ Promise.all([
 
 /**
  * Promisify a Ajax HTTP call.
- * @param  {string} url     the url to call
- * @param  {Objet} params   options
+ * @param  {string} url     The url to call
+ * @param  {Objet} params   Options
  * @param  {Object} headers
- * @return {Promise}        a resolved promise
+ * @return {Promise}        A resolved promise
  */
 function get(url, params, headers) {
   return Promise.resolve(
@@ -68,9 +79,22 @@ function get(url, params, headers) {
 }
 
 /**
+ * Run multiples files download
+ * @param  {Array} urls     Array of urls (pointing to files)
+ * @param  {Integer} duration time between each HTTP call
+ */
+function processMultipleFilesDownload(urls, duration) {
+  setTimeout(function() {
+    for(var i = 0; i < urls.length; i++) {
+      window.open(urls[i]);
+    }
+  }, duration);
+}
+
+/**
  * Parse a string containing a url
- * @param  {string} url Surrounded url
- * @return {string} the url extracted from the given string
+ * @param  {string} Url Surrounded url
+ * @return {string} The url extracted from the given string
  */
 function stripUrl(url) {
   var re = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/;
