@@ -2,6 +2,7 @@
 
   "manifest_version": 2,
   "name": "Better download all attachments gmail",
+  "short_name": "Better download all",
   "description": "This extension permits you to download all files attached, in a mail, separately on Gmail",
   "version": "0.1",
   "permissions": [
