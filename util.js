@@ -6,7 +6,7 @@
 function processMultipleFilesDownload(urls, duration) {
   setTimeout(function() {
     for(var i = 0; i < urls.length; i++) {
-      downloadAttachment(urls[i]);
+      window.open(urls[i]);
     }
   }, duration);
 }
