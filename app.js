@@ -9,7 +9,7 @@ Promise.all([
   };
 
   var messageViewHandler = function(messageView) {
-    if(messageView.isLoaded()) { 
+    if(messageView.isLoaded()) {
       // Add CustomAttachmentsToolbarButton to the given message view.
       addCustomAttachmentsToolbarButton(messageView);
     }
@@ -18,7 +18,7 @@ Promise.all([
   var addCustomAttachmentsToolbarButton = function(messageView) {
     var options = {
       tooltip: 'Download all',
-      iconUrl: 'https://cdn1.iconfinder.com/data/icons/anchor/128/download.png',
+      iconUrl: chrome.runtime.getURL('img/save.png'),
       onClick: handleAttachmentsButtonClick
     };
 
@@ -30,6 +30,7 @@ Promise.all([
 
     // Iterate over attachmentCardViews array to get URL's.
     event.forEach(function(attachmentCardView, index) {
+      
       var currentElement = attachmentCardView.getElement();
 
       if(typeof currentElement !== 'undefined') {
@@ -37,7 +38,7 @@ Promise.all([
 
         if(downloadUrl) {
           var striped = stripUrl(downloadUrl);
-          
+
           if(striped) {
             downloadUrls.push(downloadUrl);
           }
@@ -52,48 +53,3 @@ Promise.all([
   // Run.
   registerHandler();
 });
-
-/**
- * Promisify a Ajax HTTP call.
- * @param  {string} url     The url to call
- * @param  {Objet} params   Options
- * @param  {Object} headers
- * @return {Promise}        A resolved promise
- */
-function get(url, params, headers) {
-  return Promise.resolve(
-    $.ajax({
-      url: url,
-      type: 'GET',
-      crossDomain: true,
-      dataType: 'jsonp',
-      data: params,
-      headers: headers
-    })
-  );
-}
-
-/**
- * Run multiple files download
- * @param  {Array} urls     Array of urls (pointing to files)
- * @param  {Integer} duration time between each HTTP call
- */
-function processMultipleFilesDownload(urls, duration) {
-  setTimeout(function() {
-    for(var i = 0; i < urls.length; i++) {
-      window.open(urls[i]);
-    }
-  }, duration);
-}
-
-/**
- * Parse a string containing a url
- * @param  {string} Url Surrounded url
- * @return {string} The url extracted from the given string
- */
-function stripUrl(url) {
-  var re = /(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/;
-
-  // Return the full url
-  return re.exec(url)[0];
-}
