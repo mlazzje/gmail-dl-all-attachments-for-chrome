@@ -1,5 +1,5 @@
-Better download all for Gmail
-=============================
+Better download all for Gmail™
+==============================
 
 Purpose
 -------
