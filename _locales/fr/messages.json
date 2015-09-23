@@ -1,0 +1,10 @@
+{
+  "description":{
+    "message":"Cet extension vous permet de télécharger toutes les pièces jointes, d'un mail, séparemment sur Gmail™",
+    "description":"Description affiché dans le manifest"
+  },
+  "tooltip":{
+    "message":"Télécharger tout",
+    "description":"Message qui s'affiche quand on passe le curseur sur l'icône pour télécharger toutes les pièces jointes séparemment"
+  }
+}
