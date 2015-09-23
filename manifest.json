@@ -3,8 +3,14 @@
   "manifest_version": 2,
   "name": "Better download all attachments for Gmail™",
   "short_name": "Better download all",
-  "description": "This extension permits you to download all files attached, in a mail, separately on Gmail",
-  "version": "0.1",
+  "description": "__MSG_description__",
+  "version": "0.2",
+  "default_locale": "en",
+  "icons": {
+    "16": "img/logo_16.png",
+    "48": "img/logo_48.png",
+    "128": "img/logo_128.png"
+  },
   "permissions": [
     "https://mail.google.com/",
     "https://inbox.google.com/"
