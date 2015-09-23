@@ -19,7 +19,7 @@ Usage
 About
 -----
 
-Developped by [medric](https://github.com/medric) && [mlazzje](https://github.com/mlazzje)
+Developed by [medric](https://github.com/medric) && [mlazzje](https://github.com/mlazzje)
 
 Original idea of [Stéphane](https://github.com/St3ph-fr)
 
