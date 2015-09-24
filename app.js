@@ -17,7 +17,7 @@ Promise.all([
 
   var addCustomAttachmentsToolbarButton = function(messageView) {
     var options = {
-      tooltip: 'Download all',
+      tooltip: chrome.i18n.getMessage("tooltip"),
       iconUrl: chrome.runtime.getURL('img/save.png'),
       onClick: handleAttachmentsButtonClick
     };
@@ -30,7 +30,7 @@ Promise.all([
 
     // Iterate over attachmentCardViews array to get URL's.
     event.forEach(function(attachmentCardView, index) {
-      
+
       var currentElement = attachmentCardView.getElement();
 
       if(typeof currentElement !== 'undefined') {

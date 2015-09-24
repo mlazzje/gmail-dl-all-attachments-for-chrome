@@ -1,5 +1,5 @@
-Better download all for Gmail
-=============================
+Better download all for Gmail™
+==============================
 
 Purpose
 -------
@@ -9,17 +9,19 @@ This is a google chrome extension. It permits you to download all files attached
 How to install?
 ---------------
 
-
+Add to chrome the extension available here: https://chrome.google.com/webstore/detail/better-download-all-attac/eehnjaacbphnfgipdcfeaepafihfhnkm 
 
 Usage
 -----
 
+![Better download all screenshot](http://puu.sh/klAYz/06733209ca.jpg)
 
+Just click on the icon ![Better download all icon](http://puu.sh/klB1I/14428d9a4f.png)
 
 About
 -----
 
-Developped by [medric](https://github.com/medric) && [mlazzje](https://github.com/mlazzje)
+Developed by [medric](https://github.com/medric) && [mlazzje](https://github.com/mlazzje)
 
 Original idea of [Stéphane](https://github.com/St3ph-fr)
 

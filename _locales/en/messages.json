@@ -1,0 +1,10 @@
+{
+  "description":{
+    "message":"This extension permits you to download all files attached, in a mail, separately on Gmail™",
+    "description":"Description displayed in manifest"
+  },
+  "tooltip":{
+    "message":"Download all",
+    "description":"Message displayed when you focus the icon to download"
+  }
+}
