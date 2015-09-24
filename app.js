@@ -37,10 +37,10 @@ Promise.all([
         var downloadUrl = currentElement.getAttribute('download_url');
 
         if(downloadUrl) {
-          var striped = stripUrl(downloadUrl);
+          var stripped = stripUrl(downloadUrl);
 
-          if(striped) {
-            downloadUrls.push(downloadUrl);
+          if(stripped) {
+            downloadUrls.push(stripped);
           }
         }
       }
