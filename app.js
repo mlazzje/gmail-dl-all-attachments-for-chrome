@@ -17,7 +17,7 @@ Promise.all([
 
   var addCustomAttachmentsToolbarButton = function(messageView) {
     var options = {
-      tooltip: chrome.i18n.getMessage("tooltip"),
+      tooltip: chrome.i18n.getMessage('tooltip'),
       iconUrl: chrome.runtime.getURL('img/save.png'),
       onClick: handleAttachmentsButtonClick
     };
@@ -47,7 +47,7 @@ Promise.all([
     });
 
     // Download
-    processMultipleFilesDownload(downloadUrls, 1000);
+    processMultipleFilesDownload(downloadUrls, 0);
   }
 
   // Run.

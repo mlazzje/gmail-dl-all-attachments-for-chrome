@@ -1,25 +1,50 @@
 /**
  * Run multiple files download
- * @param  {Array} urls     Array of urls (pointing to files)
+ * @param  {Array} urls  Array of urls (pointing to files)
  * @param  {Integer} duration time between each HTTP call
  */
 function processMultipleFilesDownload(urls, duration) {
   for(var i = 0; i < urls.length; i++) {
-    downloadAttachment(urls[i]);
+    setTimeout(
+      (function(url) {
+        downloadAttachment(urls[i]);
+    })(urls[i]), duration);
   }
 }
 
 /**
- * Run atachment download
+ * Run attachment download
  * @param  {string} url    Url to download the attachment
  */
 function downloadAttachment(url) {
   var a = document.createElement('a');
   a.href = url;
-  var event = document.createEvent('MouseEvents');
-  event.initMouseEvent('click', true, true, window, 0, 0, 0, 0, 0,
-                              true, false, false, false, 0, null);
-  a.dispatchEvent(event);
+  
+  var dispatchMouseEvent = function(type) {
+    var event = new MouseEvent(type, {
+      bubbles: true, 
+      cancelable: true, 
+      view : window,  
+      detail: 0, 
+      screenX: 0,  
+      screenY: 0,  
+      clientX: 0,
+      clientY: 0,  
+      ctrlKey: true, 
+      shiftKey: false, 
+      altKey : false,
+      metaKey: false, 
+      button: 0,   
+      relatedTarget: null 
+    });
+
+    dispatchEvent(a, event, type);
+  }
+
+  // Trigger
+  dispatchMouseEvent('click');
+  dispatchMouseEvent('mousedown');
+  dispatchMouseEvent('mouseenter');
 }
 
 /**
@@ -32,4 +57,12 @@ function stripUrl(url) {
 
   // Return the full url
   return re.exec(url)[0];
+}
+
+function dispatchEvent (element, event, type) {
+  if (element.dispatchEvent) {
+    element.dispatchEvent(event);
+  } else if (element.fireEvent) {
+    element.fireEvent('on' + event.eventType, event);
+  }
 }
