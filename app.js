@@ -29,25 +29,15 @@ Promise.all([
     var downloadUrls = [];
 
     // Iterate over attachmentCardViews array to get URL's.
-    event.forEach(function(attachmentCardView, index) {
+    event.attachmentCardViews.forEach(function(attachmentCardView, index) {
 
-      var currentElement = attachmentCardView.getElement();
+      var currentElement = attachmentCardView;
 
       if(typeof currentElement !== 'undefined') {
-        var downloadUrl = currentElement.getAttribute('download_url');
-
-        if(downloadUrl) {
-          var stripped = stripUrl(downloadUrl);
-
-          if(stripped) {
-            downloadUrls.push(stripped);
-          }
-        }
+        // Download the attachment
+        currentElement.getDownloadURL().then(downloadAttachment);
       }
     });
-
-    // Download
-    processMultipleFilesDownload(downloadUrls, 0);
   }
 
   // Run.
