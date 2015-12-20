@@ -2,6 +2,8 @@ Promise.all([
   InboxSDK.load('1.0', 'sdk_mlazzje-dlgmail_43a7d41655')
 ])
 .then(function(results){
+  var service = analytics.getService('better_download_all_attachments_app');
+  var tracker = service.getTracker('UA-67984409-1');
   var sdk = results[0];
 
   var registerHandler = function() {
@@ -12,6 +14,8 @@ Promise.all([
     if(messageView.isLoaded()) {
       // Add CustomAttachmentsToolbarButton to the given message view.
       addCustomAttachmentsToolbarButton(messageView);
+      // Send to Analytics that the Button has been loaded
+      tracker.sendAppView('ButtonView');
     }
   };
 
@@ -28,6 +32,8 @@ Promise.all([
   var handleAttachmentsButtonClick = function(event) {
     var downloadUrls = [];
 
+    // Send to Analytics that the Button has been clicked
+    tracker.sendEvent('Button', 'DownloadAllAttachments', 'Init');
     // Iterate over attachmentCardViews array to get URL's.
     event.attachmentCardViews.forEach(function(attachmentCardView, index) {
 

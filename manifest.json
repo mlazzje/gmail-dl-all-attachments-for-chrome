@@ -4,7 +4,7 @@
   "name": "Better download all attachments for Gmail™",
   "short_name": "Better download all",
   "description": "__MSG_description__",
-  "version": "0.6",
+  "version": "0.7",
   "default_locale": "en",
   "icons": {
     "16": "img/logo_16.png",
@@ -13,13 +13,15 @@
   },
   "permissions": [
     "https://mail.google.com/",
-    "https://inbox.google.com/"
+    "https://inbox.google.com/",
+    "https://www.google-analytics.com/",
+    "storage"
   ],
   "content_scripts" : [
     {
       "matches": ["https://mail.google.com/*", "https://inbox.google.com/*"],
       "css": ["styles.css"],
-      "js": ["inboxsdk.js", "util.js", "app.js"]
+      "js": ["google-analytics-bundle.js", "inboxsdk.js", "util.js", "app.js"]
     }
   ],
   "web_accessible_resources": [
