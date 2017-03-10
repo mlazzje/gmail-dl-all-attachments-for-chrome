@@ -25,4 +25,10 @@ Developed by [medric](https://github.com/medric) && [mlazzje](https://github.com
 
 Original idea of [Stéphane](https://github.com/St3ph-fr)
 
+Next features
+-----
+
+- Download all attachments in one conversation with a single click
+- Integrate on Google Inbox
+
 
