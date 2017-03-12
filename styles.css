@@ -3,3 +3,12 @@
 	height: auto;
 	margin-top: 0.3px!important;
 }
+
+.mlazzje_toolbar-icon {
+	/*height: 12px;
+    width: 24px;*/
+    vertical-align: middle;
+    margin-top: -2px;
+    margin-left: 10px;
+    margin-right: 10px;
+}

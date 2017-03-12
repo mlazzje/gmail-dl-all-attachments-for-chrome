@@ -4,7 +4,7 @@
     "description":"Description displayed in manifest"
   },
   "tooltip":{
-    "message":"Download all",
+    "message":"Download all attachments separately",
     "description":"Message displayed when you focus the icon to download"
   }
 }

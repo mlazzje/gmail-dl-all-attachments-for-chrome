@@ -5,17 +5,48 @@ Promise.all([
   var service = analytics.getService('better_download_all_attachments_app');
   var tracker = service.getTracker('UA-67984409-1');
   var sdk = results[0];
-
-  var registerHandler = function() {
+  
+  var registerHandlers = function() {
     sdk.Conversations.registerMessageViewHandler(messageViewHandler);
+    sdk.Conversations.registerThreadViewHandler(threadViewHandler);
+
+    var properties = {
+      title: chrome.i18n.getMessage('tooltip'),
+      iconUrl: chrome.runtime.getURL('img/save_toolbar.png'),
+      section: "OTHER",
+      onClick: handleToolbarButtonClick
+    }
+
+    sdk.Toolbars.registerToolbarButtonForThreadView(properties);
   };
+
+  var threadViewHandler = function(threadRowView) {
+    // Send to Analytics that the threadView has been loaded
+    tracker.sendAppView('ThreadView');
+  }
+
+  var handleToolbarButtonClick = function(event) {
+
+    var messages = event.threadView.getMessageViewsAll();
+    var numberFiles = 0;
+
+    for(var i = 0; i < messages.length ; i++) {
+      var fileAttachmentsCardView = messages[i].getFileAttachmentCardViews();
+      fileAttachmentsCardView.forEach(handleAttachmentsDownload);
+      numberFiles += fileAttachmentsCardView.length;
+    }
+
+    console.log(numberFiles);
+    // Send to Analytics that the Button has been clicked
+    tracker.sendEvent('Button', 'DownloadAllAttachments', 'Conversation', numberFiles);
+  }
 
   var messageViewHandler = function(messageView) {
     if(messageView.isLoaded()) {
       // Add CustomAttachmentsToolbarButton to the given message view.
       addCustomAttachmentsToolbarButton(messageView);
-      // Send to Analytics that the Button has been loaded
-      tracker.sendAppView('ButtonView');
+      // Send to Analytics that the Message View has been loaded
+      tracker.sendAppView('MessageView');
     }
   };
 
@@ -31,21 +62,23 @@ Promise.all([
 
   var handleAttachmentsButtonClick = function(event) {
     var downloadUrls = [];
+    var fileAttachmentsCardView = event.attachmentCardViews;
+
+    console.log(fileAttachmentsCardView.length);
 
     // Send to Analytics that the Button has been clicked
-    tracker.sendEvent('Button', 'DownloadAllAttachments', 'Init');
+    tracker.sendEvent('Button', 'DownloadAllAttachments', 'Message', fileAttachmentsCardView.length);
     // Iterate over attachmentCardViews array to get URL's.
-    event.attachmentCardViews.forEach(function(attachmentCardView, index) {
+    fileAttachmentsCardView.forEach(handleAttachmentsDownload);
+  }
 
-      var currentElement = attachmentCardView;
-
-      if(typeof currentElement !== 'undefined') {
+  var handleAttachmentsDownload = function(attachmentCardView, index) {
+    if(typeof attachmentCardView !== 'undefined') {
         // Download the attachment
-        currentElement.getDownloadURL().then(downloadAttachment);
+        attachmentCardView.getDownloadURL().then(downloadAttachment);
       }
-    });
   }
 
   // Run.
-  registerHandler();
+  registerHandlers();
 });
