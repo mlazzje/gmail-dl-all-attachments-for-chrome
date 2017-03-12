@@ -36,7 +36,6 @@ Promise.all([
       numberFiles += fileAttachmentsCardView.length;
     }
 
-    console.log(numberFiles);
     // Send to Analytics that the Button has been clicked
     tracker.sendEvent('Button', 'DownloadAllAttachments', 'Conversation', numberFiles);
   }
@@ -63,8 +62,6 @@ Promise.all([
   var handleAttachmentsButtonClick = function(event) {
     var downloadUrls = [];
     var fileAttachmentsCardView = event.attachmentCardViews;
-
-    console.log(fileAttachmentsCardView.length);
 
     // Send to Analytics that the Button has been clicked
     tracker.sendEvent('Button', 'DownloadAllAttachments', 'Message', fileAttachmentsCardView.length);
