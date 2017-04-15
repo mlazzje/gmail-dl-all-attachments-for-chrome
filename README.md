@@ -1,5 +1,8 @@
-Better download all for Gmail™ [![PayPal donation](https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif)](https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif)
+Better download all for Gmail™ [![PayPal donation][2]][1]
 ==============================
+
+  [1]: https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif
+  [2]: https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif (hover text)
 
 Purpose
 -------
