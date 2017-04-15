@@ -17,7 +17,11 @@ Add to chrome the extension available here: https://chrome.google.com/webstore/d
 Usage
 -----
 
+1) Download all attachments from a mail
+
 ![Better download all screenshot](https://puu.sh/klAYz.jpg)
+
+2) Download all attachments from a thread (conversation)
 
 ![Better download all screenshot conversation](https://puu.sh/uEKQ2.png)
 
