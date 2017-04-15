@@ -34,5 +34,6 @@ Next features
 -----
 
 - Integrate on Google Inbox
+- Download all attachments for a search
 
 Don't hesitate to submit a new feature by posting an issue on this project.
