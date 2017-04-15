@@ -1,8 +1,8 @@
 Better download all for Gmail™ [![PayPal donation][2]][1]
 ==============================
 
-  [1]: https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif
-  [2]: https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif (hover text)
+  [1]: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=32GZMQ9WUGF2N&lc=GB&item_name=Better%20download%20all%20attachments%20for%20Gmail%e2%84%a2&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donate_LG%2egif%3aNonHosted
+  [2]: https://www.paypalobjects.com/en_GB/i/btn/btn_donate_LG.gif (PayPal donation)
 
 Purpose
 -------
