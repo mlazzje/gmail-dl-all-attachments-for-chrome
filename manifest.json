@@ -4,7 +4,7 @@
   "name": "Better download all attachments for Gmail™",
   "short_name": "Better download all",
   "description": "__MSG_description__",
-  "version": "1.0",
+  "version": "1.1.0",
   "default_locale": "en",
   "icons": {
     "16": "img/logo_16.png",
