@@ -47,8 +47,8 @@ Support me
 
 Pay me a pizza ;)
 
-*bitcoin:1C9y9yn9DLW2vTCgnd1HxfM7ndCMJup2YL*
+*bitcoin:*
 
-*ethereum:0xA58C983a2FD04b9c1933c2C43bFF4513daC19840*
+*ethereum:*
 
 
